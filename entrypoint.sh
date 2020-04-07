@@ -25,11 +25,10 @@ sanitize "${IMAGE}" "image"
 sanitize "${TAG}" "tag"
 
 if [ "$REGISTRY" == "docker.pkg.github.com" ]; then
-    GITHUB_IMAGE_PREFIX="$(tr '[:upper:]' '[:lower:]' <<< "$GITHUB_REPOSITORY")"
-    export IMAGE="$GITHUB_IMAGE_PREFIX/$IMAGE"
+    export IMAGE="$GITHUB_REPOSITORY/$IMAGE"
 
     if [ ! -z $INPUT_CACHE_REGISTRY ]; then
-        export INPUT_CACHE_REGISTRY="$REGISTRY/$GITHUB_IMAGE_PREFIX/$INPUT_CACHE_REGISTRY"
+        export INPUT_CACHE_REGISTRY="$REGISTRY/$GITHUB_REPOSITORY/$INPUT_CACHE_REGISTRY"
     fi
 fi
 
